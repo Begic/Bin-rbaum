@@ -14,6 +14,7 @@ namespace Binärbaum
             var tree = new BinaryTree();
             Node finishedTree = tree.Create(numbers);
 
+
             //GetMinValueFromTree gibt den kleinsten Wert vom fertigen Binärbaum(finishedTree) zurück.
             var minNode = tree.GetMinValueFromTree(finishedTree);
             tree.DisplayValuesFromTree(minNode.Id.ToString(), nameof(ValueType.Min));
@@ -23,12 +24,14 @@ namespace Binärbaum
             tree.DisplayValuesFromTree(maxNode.Id.ToString(), nameof(ValueType.Max));
 
 
-            //GetNodesSorted(Descendig) gibt vom fertigen Binärbaum eine absteigend sortierte List<int> zurück.
-            var nodeDescending = tree.GetNodesSorted(finishedTree, SortingType.Descending);
+
+
+            //GetNodesSortedDescending gibt vom fertigen Binärbaum eine absteigend sortierte List<int> zurück.
+            var nodeDescending = tree.GetNodesSortedDescending(finishedTree);
             tree.DisplaySortedNumbers(numbers, nodeDescending, nameof(SortingType.Descending));
 
-            //GetNodesSorted(Ascendig) gibt vom fertigen Binärbaum eine aufsteigend sortierte List<int> zurück.
-            var nodeAscending = tree.GetNodesSorted(finishedTree, SortingType.Ascending);
+            //GetNodesSortedAscendig gibt vom fertigen Binärbaum eine aufsteigend sortierte List<int> zurück.
+            var nodeAscending = tree.GetNodesSortedAscending(finishedTree);
             tree.DisplaySortedNumbers(numbers, nodeAscending, nameof(SortingType.Ascending));
         }
     }

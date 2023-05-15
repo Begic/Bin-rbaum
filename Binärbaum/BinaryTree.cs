@@ -54,34 +54,37 @@ public class BinaryTree
         return finishedTree;
     }
 
-    public List<int> GetNodesSorted(Node finishedTree, SortingType sortingType)
+    public List<int> GetNodesSortedDescending(Node finishedTree)
     {
-        var numbers = new List<int>();
+        var list = new List<int>();
 
-        //Hier füge ich die NodeIds zur liste, dabei verwende ich erneut einen Selbstaufruf.
-        if (finishedTree.LeftNode != null)
+        if (finishedTree != null)
         {
-            numbers.AddRange(GetNodesSorted(finishedTree.LeftNode, sortingType));
+            //Da eine absteigende Liste gewünscht ist, fangen wir mit den größten Wert(finishedTree.RightNode) an.
+            list.AddRange(GetNodesSortedDescending(finishedTree.RightNode));
+            list.Add(finishedTree.Id);
+            list.AddRange(GetNodesSortedDescending(finishedTree.LeftNode));
         }
-        if (finishedTree.RightNode != null)
-        {
-            numbers.AddRange(GetNodesSorted(finishedTree.RightNode, sortingType));
-        }
+        return list;
+    }   
+    
+    public List<int> GetNodesSortedAscending(Node finishedTree)
+    {
+        var list = new List<int>();
 
-        //Meine eigene Id von der Node muss ich ebenfalls abspeichern.
-        numbers.Add(finishedTree.Id);
-
-        //Hier habe ich mittels einem enum's die Sortierung gelöst.
-        if (sortingType == SortingType.Ascending)
+        if (finishedTree != null)
         {
-            return numbers.Distinct().OrderBy(x => x).ToList();
+            //Da eine aufsteigende Liste gewünscht ist, fangen wir mit den kleinsten Wert(finishedTree.LeftNode) an.
+            list.AddRange(GetNodesSortedAscending(finishedTree.LeftNode));
+            list.Add(finishedTree.Id);
+            list.AddRange(GetNodesSortedAscending(finishedTree.RightNode));
         }
-        return numbers.Distinct().OrderByDescending(x => x).ToList();
+        return list;
     }
 
-    public void DisplaySortedNumbers(int[] numbers, List<int> nodeAscending, string sortingName)
+    public void DisplaySortedNumbers(int[] numbers, List<int> nodes, string sortingName)
     {
-        Console.WriteLine("Sortierung-" + sortingName +": "+ string.Join(", ", nodeAscending.Select(x => x)));
+        Console.WriteLine("Sortierung-" + sortingName + ": " + string.Join(", ", nodes.Select(x => x)));
     }
 
     public void DisplayValuesFromTree(string nodeId, string valueType)
