@@ -25,7 +25,6 @@ namespace Binärbaum
 
 
 
-
             //GetNodesSortedDescending gibt vom fertigen Binärbaum eine absteigend sortierte List<int> zurück.
             var nodeDescending = tree.GetNodesSortedDescending(finishedTree);
             tree.DisplaySortedNumbers(numbers, nodeDescending, nameof(SortingType.Descending));
@@ -33,6 +32,11 @@ namespace Binärbaum
             //GetNodesSortedAscendig gibt vom fertigen Binärbaum eine aufsteigend sortierte List<int> zurück.
             var nodeAscending = tree.GetNodesSortedAscending(finishedTree);
             tree.DisplaySortedNumbers(numbers, nodeAscending, nameof(SortingType.Ascending));
+
+
+
+            var biggertree = tree.AddValueToTree(finishedTree, 49);
+
         }
     }
 }

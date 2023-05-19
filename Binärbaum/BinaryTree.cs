@@ -30,6 +30,22 @@ public class BinaryTree
         return null;
     }
 
+    public Node AddValueToTree(Node finishedTree, int numberToAdd)
+    {
+        if (finishedTree != null && finishedTree.Id > numberToAdd)
+        {
+            AddValueToTree(finishedTree.LeftNode, numberToAdd);
+            finishedTree.LeftNode = new Node(numberToAdd);
+        }
+        else if (finishedTree != null && finishedTree.Id < numberToAdd)
+        {
+            AddValueToTree(finishedTree.RightNode, numberToAdd);
+            finishedTree.RightNode = new Node(numberToAdd);
+        }
+
+        return finishedTree;
+    }
+
     public Node GetMinValueFromTree(Node finishedTree)
     {
         //Hier wird überprüft ob die Id der Haupt-Node größer ist als die Id des linken Baumes.
@@ -66,8 +82,8 @@ public class BinaryTree
             list.AddRange(GetNodesSortedDescending(finishedTree.LeftNode));
         }
         return list;
-    }   
-    
+    }
+
     public List<int> GetNodesSortedAscending(Node finishedTree)
     {
         var list = new List<int>();
