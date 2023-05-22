@@ -35,8 +35,7 @@ namespace Binärbaum
 
 
 
-            var biggertree = tree.AddValueToTree(finishedTree, 49);
-
+            var treeWithAddedValue = tree.AddValueToTree(finishedTree, 49);
         }
     }
 }

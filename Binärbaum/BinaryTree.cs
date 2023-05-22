@@ -1,6 +1,4 @@
-﻿using Binärbaum.Enums;
-
-namespace Binärbaum;
+﻿namespace Binärbaum;
 
 public class BinaryTree
 {
@@ -32,15 +30,18 @@ public class BinaryTree
 
     public Node AddValueToTree(Node finishedTree, int numberToAdd)
     {
-        if (finishedTree != null && finishedTree.Id > numberToAdd)
+        if (finishedTree == null)
         {
-            AddValueToTree(finishedTree.LeftNode, numberToAdd);
-            finishedTree.LeftNode = new Node(numberToAdd);
+            return new Node(numberToAdd);
         }
-        else if (finishedTree != null && finishedTree.Id < numberToAdd)
+
+        if (finishedTree.Id < numberToAdd)
         {
-            AddValueToTree(finishedTree.RightNode, numberToAdd);
-            finishedTree.RightNode = new Node(numberToAdd);
+            finishedTree.RightNode = AddValueToTree(finishedTree.RightNode, numberToAdd);
+        }
+        else if (finishedTree.Id > numberToAdd)
+        {
+            finishedTree.LeftNode = AddValueToTree(finishedTree.LeftNode, numberToAdd);
         }
 
         return finishedTree;
@@ -50,10 +51,8 @@ public class BinaryTree
     {
         //Hier wird überprüft ob die Id der Haupt-Node größer ist als die Id des linken Baumes.
         if (finishedTree.LeftNode != null && finishedTree.Id > finishedTree.LeftNode.Id)
-        {
             //Hier findet wieder der Selbstaufruf statt.
             return GetMinValueFromTree(finishedTree.LeftNode);
-        }
 
         return finishedTree;
     }
@@ -62,10 +61,8 @@ public class BinaryTree
     {
         //Hier wird überprüft ob die Id der Haupt-Node kleiner ist als die Id des linken Baumes.
         if (finishedTree.RightNode != null && finishedTree.Id < finishedTree.RightNode.Id)
-        {
             //Hier findet wieder der Selbstaufruf statt.
             return GetMaxValueFromTree(finishedTree.RightNode);
-        }
 
         return finishedTree;
     }
@@ -81,6 +78,7 @@ public class BinaryTree
             list.Add(finishedTree.Id);
             list.AddRange(GetNodesSortedDescending(finishedTree.LeftNode));
         }
+
         return list;
     }
 
@@ -95,6 +93,7 @@ public class BinaryTree
             list.Add(finishedTree.Id);
             list.AddRange(GetNodesSortedAscending(finishedTree.RightNode));
         }
+
         return list;
     }
 
