@@ -30,15 +30,18 @@ public class BinaryTree
 
     public Node AddValueToTree(Node finishedTree, int numberToAdd)
     {
+        //Falls die Node null ist wird der Wert direkt eingefügt
         if (finishedTree == null)
         {
             return new Node(numberToAdd);
         }
 
+        //Falls der wert größer ist wird er zur rechten Node hinzugefügt.
         if (finishedTree.Id < numberToAdd)
         {
             finishedTree.RightNode = AddValueToTree(finishedTree.RightNode, numberToAdd);
         }
+        //Falls der wert kleiner ist wird er zur linken Node hinzugefügt.
         else if (finishedTree.Id > numberToAdd)
         {
             finishedTree.LeftNode = AddValueToTree(finishedTree.LeftNode, numberToAdd);

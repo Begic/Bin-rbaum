@@ -35,7 +35,19 @@ namespace Binärbaum
 
 
 
+
+
+            //In dieser Methode wird ein weiterer Wert hinzugefügt
             var treeWithAddedValue = tree.AddValueToTree(finishedTree, 49);
+
+            //GetNodesSortedDescending gibt vom fertigen Binärbaum eine absteigend sortierte List<int> zurück.
+            var nodeDescendingWithAddedValue = tree.GetNodesSortedDescending(treeWithAddedValue);
+            tree.DisplaySortedNumbers(numbers, nodeDescendingWithAddedValue, nameof(SortingType.Descending));
+
+            //GetNodesSortedAscendig gibt vom fertigen Binärbaum eine aufsteigend sortierte List<int> zurück.
+            var nodeAscendingWithAddedValu = tree.GetNodesSortedAscending(treeWithAddedValue);
+            tree.DisplaySortedNumbers(numbers, nodeAscendingWithAddedValu, nameof(SortingType.Ascending));
+
         }
     }
 }
